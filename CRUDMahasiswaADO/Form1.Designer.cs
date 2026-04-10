@@ -41,10 +41,10 @@
             this.txtAlamat = new System.Windows.Forms.TextBox();
             this.txtKodeProdi = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonConnect = new System.Windows.Forms.Button();
-            this.buttonLoadData = new System.Windows.Forms.Button();
-            this.buttonAddData = new System.Windows.Forms.Button();
-            this.buttonEditData = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.buttonDeleteData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -94,6 +94,9 @@
             // cmbJK
             // 
             this.cmbJK.FormattingEnabled = true;
+            this.cmbJK.Items.AddRange(new object[] {
+            "L",
+            "P"});
             this.cmbJK.Location = new System.Drawing.Point(166, 98);
             this.cmbJK.Name = "cmbJK";
             this.cmbJK.Size = new System.Drawing.Size(143, 24);
@@ -160,41 +163,45 @@
             this.dataGridView1.Size = new System.Drawing.Size(682, 188);
             this.dataGridView1.TabIndex = 12;
             // 
-            // buttonConnect
+            // btnConnect
             // 
-            this.buttonConnect.Location = new System.Drawing.Point(499, 44);
-            this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.Size = new System.Drawing.Size(142, 23);
-            this.buttonConnect.TabIndex = 13;
-            this.buttonConnect.Text = "Membuka Koneksi";
-            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Location = new System.Drawing.Point(499, 44);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(142, 23);
+            this.btnConnect.TabIndex = 13;
+            this.btnConnect.Text = "Membuka Koneksi";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
-            // buttonLoadData
+            // btnLoad
             // 
-            this.buttonLoadData.Location = new System.Drawing.Point(499, 72);
-            this.buttonLoadData.Name = "buttonLoadData";
-            this.buttonLoadData.Size = new System.Drawing.Size(142, 23);
-            this.buttonLoadData.TabIndex = 14;
-            this.buttonLoadData.Text = "Menampilkan Data";
-            this.buttonLoadData.UseVisualStyleBackColor = true;
+            this.btnLoad.Location = new System.Drawing.Point(499, 72);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(142, 23);
+            this.btnLoad.TabIndex = 14;
+            this.btnLoad.Text = "Menampilkan Data";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.buttonLoadData_Click);
             // 
-            // buttonAddData
+            // btnInsert
             // 
-            this.buttonAddData.Location = new System.Drawing.Point(499, 98);
-            this.buttonAddData.Name = "buttonAddData";
-            this.buttonAddData.Size = new System.Drawing.Size(142, 23);
-            this.buttonAddData.TabIndex = 15;
-            this.buttonAddData.Text = "Menambah Data";
-            this.buttonAddData.UseVisualStyleBackColor = true;
+            this.btnInsert.Location = new System.Drawing.Point(499, 98);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(142, 23);
+            this.btnInsert.TabIndex = 15;
+            this.btnInsert.Text = "Menambah Data";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // buttonEditData
+            // btnUpdate
             // 
-            this.buttonEditData.Location = new System.Drawing.Point(499, 128);
-            this.buttonEditData.Name = "buttonEditData";
-            this.buttonEditData.Size = new System.Drawing.Size(142, 23);
-            this.buttonEditData.TabIndex = 16;
-            this.buttonEditData.Text = "Mengubah Data";
-            this.buttonEditData.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(499, 128);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(142, 23);
+            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.Text = "Mengubah Data";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // buttonDeleteData
             // 
@@ -204,6 +211,7 @@
             this.buttonDeleteData.TabIndex = 17;
             this.buttonDeleteData.Text = "Menghapus Data";
             this.buttonDeleteData.UseVisualStyleBackColor = true;
+            this.buttonDeleteData.Click += new System.EventHandler(this.buttonDeleteData_Click);
             // 
             // Form1
             // 
@@ -211,10 +219,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonDeleteData);
-            this.Controls.Add(this.buttonEditData);
-            this.Controls.Add(this.buttonAddData);
-            this.Controls.Add(this.buttonLoadData);
-            this.Controls.Add(this.buttonConnect);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnInsert);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtKodeProdi);
             this.Controls.Add(this.txtAlamat);
@@ -230,6 +238,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,10 +260,10 @@
         private System.Windows.Forms.TextBox txtAlamat;
         private System.Windows.Forms.TextBox txtKodeProdi;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button buttonConnect;
-        private System.Windows.Forms.Button buttonLoadData;
-        private System.Windows.Forms.Button buttonAddData;
-        private System.Windows.Forms.Button buttonEditData;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button buttonDeleteData;
     }
 }
