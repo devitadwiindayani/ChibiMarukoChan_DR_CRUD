@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
+using System.Web.Services.Description;
 using System.Windows.Forms;
 
 namespace CRUDMahasiswaADO
@@ -428,21 +429,9 @@ namespace CRUDMahasiswaADO
             }
         }
 
-        private void SimpanLog(string pesan)
+        private void SimpanLog(string message)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = @"INSERT INTO LogError
-                         VALUES(GETDATE(), @pesan)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@pesan", pesan);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            dbLogic.InsertLog(message);
         }
 
         private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
