@@ -52,15 +52,21 @@ namespace CRUDMahasiswaADO
         {
             try
             {
-                using (SqlConnection connTest = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(dbLogic.GetConnectionString()))
                 {
-                    connTest.Open();
-                    MessageBox.Show("Koneksi berhasil");
+                    conn.Open();
+                    MessageBox.Show("Koneksi Berhasil");
                 }
+            }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("SQL Error : " + ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Koneksi gagal: " + ex.Message);
+                SimpanLog(ex.Message);
+                MessageBox.Show("General Error : " + ex.Message);
             }
         }
 
