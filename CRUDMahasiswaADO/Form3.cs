@@ -25,6 +25,8 @@ namespace CRUDMahasiswaADO
         string prodi { get; set; }
         DateTime tglMasuk { get; set; }
 
+        DAL dbLogic = new DAL();
+
         public Form3(string Prodi, DateTime TglMasuk)
         {
             InitializeComponent();
@@ -32,34 +34,23 @@ namespace CRUDMahasiswaADO
             prodi = Prodi;
             tglMasuk = TglMasuk;
 
+            InitializeComponent();
+
+            prodi = Prodi;
+            tglMasuk = TglMasuk;
+
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-
-                SqlCommand cmd = new SqlCommand("sp_Report", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@inProdi", prodi);
-                cmd.Parameters.AddWithValue("@inTglMasuk", tglMasuk.Year);
-
-                da = new SqlDataAdapter(cmd);
-
-                dtMahasiswa = new DataTable();
-                da.Fill(dtMahasiswa);
-
-                conn.Close();
+                DataTable dtMahasiswa = dbLogic.getDataRekap(prodi, tglMasuk);
 
                 listMahasiswa.SetDataSource(dtMahasiswa);
-
                 crystalReportViewer1.ReportSource = listMahasiswa;
                 crystalReportViewer1.Refresh();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal load data : " + ex.Message);
+                // //simpanLog(ex.Message);
+                MessageBox.Show("Gagal load data: " + ex.Message);
             }
         }
 
